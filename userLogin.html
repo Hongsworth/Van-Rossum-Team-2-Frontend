@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="login-title"></div>
+        <form class="login-form">
+            <input
+                type="text"
+                placeholder="Username"
+                class="login-form__username"
+                required
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                class="login-form__password"
+                required
+            />
+            <button type="submit" class="login-form__submitButton">
+                Sign In
+            </button>
+
+            <div class="login-form__signup">
+                Don't have an account?
+                <a href="#" onclick="showSignup()">Create one</a>
+            </div>
+        </form>
+    </body>
+</html>
