@@ -1,4 +1,4 @@
-import { loadUserProfile } from "./userProfile.js";
+import { loadUserProfile } from "./utils/userProfile.js";
 const LAPTOP_MONITOR_WINDOW_SIZE = 1081;
 const menu = document.querySelector(".menu");
 const menuItems = document.querySelectorAll(".menu__item");

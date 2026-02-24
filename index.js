@@ -1,5 +1,5 @@
 import { getMenu } from "./menu.js";
-import { loadUserProfile } from "./userProfile.js";
+import { loadUserProfile } from "./utils/userProfile.js";
 
 const userProfile = loadUserProfile();
 const navBar = document.querySelector("#navbar");
