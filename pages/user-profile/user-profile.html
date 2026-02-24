@@ -18,9 +18,10 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles/user-profile.css" />
+    <link rel="stylesheet" href="../../styles/styles.css" />
+    <link rel="stylesheet" href="../../styles/user-profile.css" />
   </head>
-  <body class="montserrat-regular">
+  <body class="body montserrat-regular">
 
     <!-- Header -->
     <header class="heading">
@@ -28,17 +29,7 @@
     </header>
 
     <!-- Nav -->
-    <nav class="nav">
-      <button class="nav__toggle" id="navToggle" aria-label="Open menu">
-        <span class="material-icons">menu</span>
-      </button>
-      <ul class="nav__dropdown" id="navDropdown">
-        <li><a href="./user-profile.html" class="nav__link">Home</a></li>
-        <li><a href="../index.html" class="nav__link">Posts</a></li>
-        <li><a href="./add-dog.html" class="nav__link">Add Dog</a></li>
-        <li><a href="./puppydex.html" class="nav__link">Puppydex</a></li>
-      </ul>
-    </nav>
+    <nav id="navbar"></nav>
 
     <!-- Main Content -->
     <main class="profile">
@@ -66,11 +57,13 @@
 
       <!-- Posts Feed -->
       <section class="posts-feed" id="postsFeed">
-        <!-- Post cards injected by profile.js -->
+        <!-- Post cards injected by user-profile.js -->
       </section>
 
     </main>
 
-    <script src="../scripts/user-profile.js" type="module"></script>
+    <script type="module" src="../../scripts/index.js"></script>
+    <script type="module" src="../../scripts/hamburger.js" defer></script>
+    <script src="../../scripts/user-profile.js" type="module"></script>
   </body>
 </html>
