@@ -1,0 +1,360 @@
+// =====================
+// Variables
+// =====================
+$font-branding: "Imperial Script", cursive;
+$font-body: "Montserrat", sans-serif;
+
+$color-bg: #f5e6ed;
+$color-white: #fff;
+$color-card-shadow: rgba(0, 0, 0, 0.08);
+$color-divider: rgba(0, 0, 0, 0.1);
+$color-text: #444;
+$color-text-muted: #777;
+$color-text-light: #888;
+$color-text-dark: #333;
+$color-img-placeholder: #e0e0e0;
+
+$border-radius-card: 12px;
+$border-radius-img: 8px;
+$border-radius-btn: 6px;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1081px;
+$breakpoint-xl: 1200px;
+
+$feed-max-width: 600px;
+$profile-max-width: 960px;
+
+// =====================
+// Mixins
+// =====================
+@mixin tablet-portrait {
+  @media only screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media only screen and (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin monitor {
+  @media only screen and (min-width: #{$breakpoint-xl + 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+// =====================
+// Fonts
+// =====================
+@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.imperial-script-regular {
+  font-family: $font-branding;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-regular {
+  font-family: $font-body;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+// =====================
+// Reset & Base
+// =====================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $color-bg;
+  min-height: 100vh;
+}
+
+// =====================
+// Header
+// =====================
+.heading {
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba($color-white, 0.45);
+
+  &__title {
+    font-size: 3rem;
+    line-height: 1.2;
+  }
+}
+
+// =====================
+// Nav Dropdown
+// =====================
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+
+  &__toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .material-icons {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    right: 1rem;
+    background: $color-white;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    min-width: 180px;
+    z-index: 99;
+    overflow: hidden;
+
+    &.nav__dropdown--open {
+      display: block;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: #f5e6ed;
+    }
+  }
+}
+
+// =====================
+// Profile Header & Stats
+// =====================
+.profile {
+  max-width: $profile-max-width;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__username {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  &__stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $color-text-dark;
+  }
+
+  &__stat-label {
+    font-size: 0.75rem;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid $color-divider;
+    margin: 1.5rem 0 2rem;
+  }
+}
+
+// =====================
+// Posts Feed
+// =====================
+.posts-feed {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+  width: 100%;
+
+  @include tablet-portrait {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include laptop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include monitor {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// =====================
+// Post Card
+// =====================
+.post-card {
+  background: $color-white;
+  border-radius: $border-radius-card;
+  overflow: hidden;
+  box-shadow: 0 2px 10px $color-card-shadow;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__image {
+    width: calc(100% - 1.5rem);
+    margin: 0.75rem auto 0;
+    height: 220px;
+    object-fit: cover;
+    border-radius: $border-radius-img;
+    display: block;
+    background-color: $color-img-placeholder;
+
+    @include mobile {
+      height: 300px;
+    }
+  }
+
+  &__body {
+    padding: 0.85rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__caption {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: $color-text;
+    line-height: 1.55;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: $color-text-light;
+
+    &-icon {
+      font-size: 1rem;
+      color: #aaa;
+    }
+  }
+
+  &__datetime {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: $color-text-muted;
+
+    &-icon {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  }
+
+  &__likes {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin-top: 0.25rem;
+  }
+
+  &__heart-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: $font-body;
+    font-size: 0.875rem;
+    color: #e05c7a;
+    padding: 0.25rem 0.5rem;
+    border-radius: $border-radius-btn;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: rgba(224, 92, 122, 0.08);
+    }
+  }
+
+  &__heart-icon {
+    font-size: 1.2rem;
+  }
+
+  &__heart-count {
+    font-size: 0.875rem;
+    color: #555;
+  }
+}
+
+// =====================
+// Empty State
+// =====================
+.posts-empty {
+  text-align: center;
+  color: #999;
+  font-size: 1rem;
+  padding: 3rem 0;
+  width: 100%;
+}
