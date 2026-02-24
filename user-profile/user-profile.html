@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PuppyLand - Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/user-profile.css" />
+  </head>
+  <body class="montserrat-regular">
+
+    <!-- Header -->
+    <header class="heading">
+      <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
+    </header>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu">
+        <span class="material-icons">menu</span>
+      </button>
+      <ul class="nav__dropdown" id="navDropdown">
+        <li><a href="./user-profile.html" class="nav__link">Home</a></li>
+        <li><a href="../index.html" class="nav__link">Posts</a></li>
+        <li><a href="./add-dog.html" class="nav__link">Add Dog</a></li>
+        <li><a href="./puppydex.html" class="nav__link">Puppydex</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="profile">
+
+      <!-- Profile Header & Stats -->
+      <section class="profile__header">
+        <h2 class="profile__username" id="profileUsername">Posts</h2>
+        <div class="profile__stats">
+          <div class="profile__stat">
+            <span class="profile__stat-number" id="totalPosts">0</span>
+            <span class="profile__stat-label">Posts</span>
+          </div>
+          <div class="profile__stat">
+            <span class="profile__stat-number" id="breedsCount">0</span>
+            <span class="profile__stat-label">Breeds Encountered</span>
+          </div>
+          <div class="profile__stat">
+            <span class="profile__stat-number" id="totalLikes">0</span>
+            <span class="profile__stat-label">Total Likes</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="profile__divider" />
+
+      <!-- Posts Feed -->
+      <section class="posts-feed" id="postsFeed">
+        <!-- Post cards injected by profile.js -->
+      </section>
+
+    </main>
+
+    <script src="../scripts/user-profile.js" type="module"></script>
+  </body>
+</html>
