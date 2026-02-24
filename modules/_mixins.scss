@@ -1,0 +1,31 @@
+@use "./variables";
+
+@mixin phone {
+    @media only screen and (max-width: (variables.$sm - 1)) {
+        @content;
+    }
+}
+
+@mixin tablet-portrait {
+    @media only screen and (min-width: (variables.$sm)) and (max-width: (variables.$md)) {
+        @content;
+    }
+}
+
+@mixin tablet-landscape {
+    @media only screen and (min-width: (variables.$md + 1)) and (max-width: (variables.$lg)) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media only screen and (min-width: (variables.$lg + 1)) and (max-width: (variables.$xl)) {
+        @content;
+    }
+}
+
+@mixin monitor {
+    @media only screen and (min-width: (variables.$xl + 1)) {
+        @content;
+    }
+}
