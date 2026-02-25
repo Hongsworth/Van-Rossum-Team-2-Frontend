@@ -1,0 +1,116 @@
+.body {
+  background-image: linear-gradient(rgba(255, 255, 225, 0.6), rgba(255, 255, 255, 0.6)), url("../images/okeykat-w6elADh_jww-unsplash.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.heading {
+  text-align: center;
+}
+
+.imperial-script-regular {
+  font-family: "Imperial Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat-regular {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hamburger {
+  position: fixed;
+  z-index: 100;
+  top: 1.5rem;
+  right: 1rem;
+  padding: 4px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+@media only screen and (min-width: 1081px) and (max-width: 1200px) {
+  .hamburger {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .hamburger {
+    display: none;
+  }
+}
+.hamburger__close-icon {
+  display: none;
+}
+
+.menu {
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  transform: translateX(110%);
+  transition: transform 0.2s;
+  top: 0;
+  left: 40%;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  color: white;
+  list-style: none;
+  padding-top: 4rem;
+  width: 50%;
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .menu {
+    left: 50%;
+    width: 40%;
+  }
+}
+@media only screen and (min-width: 1081px) and (max-width: 1200px) {
+  .menu {
+    background-color: transparent;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: translateX(60%);
+    width: 30%;
+    padding: 10px 0;
+    left: 50%;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .menu {
+    background-color: transparent;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 35%;
+    left: 65%;
+    transform: translateX(-20%);
+    padding: 10px 0;
+    bottom: none;
+  }
+}
+.menu--show {
+  transform: translateX(0);
+}
+.menu__item {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 3rem;
+}
+@media only screen and (min-width: 1081px) and (max-width: 1200px) {
+  .menu__item {
+    line-height: 2rem;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .menu__item {
+    line-height: 2rem;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
