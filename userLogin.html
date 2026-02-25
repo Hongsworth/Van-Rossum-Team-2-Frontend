@@ -35,34 +35,34 @@
             </div>
         </form>
 
-        <form class="register-form" id="register-form">
+        <form class="register-form hidden" id="register-form">
             <div class="register-form__title"></div>
-            <label for="email">Email:</label>
+            <label for="register-form__email">Email:</label>
             <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 class="register-form__email"
-                id="email"
+                id="register-form__email"
                 required
             />
-            <label for="username">Username:</label>
+            <label for="register-form__username">Username:</label>
             <input
                 type="text"
                 placeholder="Username"
                 class="register-form__username"
-                id="username"
+                id="register-form__username"
                 required
             />
-            <label for="password">Password:</label>
+            <label for="register-form__password">Password:</label>
             <input
                 type="password"
                 placeholder="Password"
                 class="register-form__password"
-                id="password"
+                id="register-form__password"
                 required
             />
             <button type="submit" class="register-form__submitButton">
-                Sign In
+                Sign Up
             </button>
             <div class="login-form__signup">
                 Have an account?
@@ -71,5 +71,6 @@
         </form>
     </body>
     <script src="login.js"></script>
-    <script src="formSwitch.js"></script>
+    <script src="register.js"></script>
+    <script src="form-switch.js"></script>
 </html>
