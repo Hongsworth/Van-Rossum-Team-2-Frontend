@@ -1,6 +1,7 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js";
-import { fetchPosts, toggleHeart } from "./utils.js";
+import { toggleHeart } from "./utils.js";
+import { fetchPosts } from "./grid.js";
 
 // Use real sessionStorage when available, fall back to fake data for development
 const sessionStr = sessionStorage.getItem("userProfile");
@@ -131,7 +132,10 @@ const loadUserPosts = async () => {
     renderStats(posts);
     renderPosts(posts);
   } catch (err) {
-    console.warn("Could not load posts from API, using fake data:", err.message);
+    console.warn(
+      "Could not load posts from API, using fake data:",
+      err.message,
+    );
     renderStats(fakePosts);
     renderPosts(fakePosts);
   }

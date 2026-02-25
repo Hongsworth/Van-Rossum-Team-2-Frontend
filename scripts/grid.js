@@ -1,4 +1,4 @@
-import { fetchPosts } from "./utils.js";
+const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 
 const gridContainer = document.querySelector(".grid__container");
 
@@ -54,6 +54,15 @@ const displayPosts = (json) => {
     cardContainer.appendChild(location);
     cardContainer.appendChild(caption);
   });
+};
+
+// Fetches posts from the API. Pass a userId to get user-specific posts.
+export const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) url += "/userPosts?userId=" + userId;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
 };
 
 fetchPosts()
