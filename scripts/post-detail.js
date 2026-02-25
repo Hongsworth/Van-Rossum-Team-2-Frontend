@@ -1,8 +1,6 @@
 // Post Detail page — reads ?id= from URL, fetches post, renders it, wires Next.
 import { fakePosts } from "../data/fake-user.js";
-import { toggleHeart } from "./utils.js";
-
-const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
+import { fetchPosts, toggleHeart } from "./utils.js";
 
 // -- DOM refs --
 const postImage = document.getElementById("postImage");
@@ -58,10 +56,7 @@ const loadPost = async (id) => {
   let allPosts;
 
   try {
-    const response = await fetch(API_URL);
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
-    const data = await response.json();
-    allPosts = data.filter((p) => p.is_public !== false);
+    allPosts = await fetchPosts();
   } catch (err) {
     console.warn("Could not load posts from API, using fake data:", err.message);
     allPosts = fakePosts;

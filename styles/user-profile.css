@@ -1,17 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-.imperial-script-regular {
-  font-family: "Imperial Script", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.montserrat-regular {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
 *,
 *::before,
 *::after {
@@ -21,7 +7,6 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
   background-color: #f5e6ed;
   min-height: 100vh;
 }
@@ -174,7 +159,6 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: "Montserrat", sans-serif;
   font-size: 0.875rem;
   color: #e05c7a;
   padding: 0.25rem 0.5rem;
@@ -199,5 +183,3 @@ body {
   padding: 3rem 0;
   width: 100%;
 }
-
-/*# sourceMappingURL=user-profile.css.map */

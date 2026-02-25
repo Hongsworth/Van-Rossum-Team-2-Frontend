@@ -1,9 +1,6 @@
 // =====================
 // Variables
 // =====================
-$font-branding: "Imperial Script", cursive;
-$font-body: "Montserrat", sans-serif;
-
 $color-bg: #f5e6ed;
 $color-white: #fff;
 $color-card-shadow: rgba(0, 0, 0, 0.08);
@@ -60,24 +57,6 @@ $profile-max-width: 960px;
 }
 
 // =====================
-// Fonts
-// =====================
-@import url("https://fonts.googleapis.com/css2?family=Imperial+Script&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-.imperial-script-regular {
-  font-family: $font-branding;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.montserrat-regular {
-  font-family: $font-body;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-// =====================
 // Reset & Base
 // =====================
 *,
@@ -89,7 +68,6 @@ $profile-max-width: 960px;
 }
 
 body {
-  font-family: $font-body;
   background-color: $color-bg;
   min-height: 100vh;
 }
@@ -266,7 +244,6 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-family: $font-body;
     font-size: 0.875rem;
     color: #e05c7a;
     padding: 0.25rem 0.5rem;

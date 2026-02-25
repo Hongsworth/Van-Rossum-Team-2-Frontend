@@ -1,8 +1,6 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js";
-import { toggleHeart } from "./utils.js";
-
-const API_URL = "http://localhost:8080/api/v1/";
+import { fetchPosts, toggleHeart } from "./utils.js";
 
 // Use real sessionStorage when available, fall back to fake data for development
 const sessionStr = sessionStorage.getItem("userProfile");
@@ -122,18 +120,20 @@ const renderPosts = (posts) => {
 
 // -- Fetch posts from API --
 const loadUserPosts = async () => {
+  if (!currentUser.id) {
+    renderStats(fakePosts);
+    renderPosts(fakePosts);
+    return;
+  }
+
   try {
-    // TODO: switch to userID endpoint once the API supports fetching posts by user
-    const response = await fetch(`${API_URL}users/${currentUser.name}/posts`);
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
-    const posts = await response.json();
+    const posts = await fetchPosts(currentUser.id);
     renderStats(posts);
     renderPosts(posts);
   } catch (err) {
     console.warn("Could not load posts from API, using fake data:", err.message);
     renderStats(fakePosts);
     renderPosts(fakePosts);
-
   }
 };
 

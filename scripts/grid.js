@@ -1,4 +1,4 @@
-const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
+import { fetchPosts } from "./utils.js";
 
 const gridContainer = document.querySelector(".grid__container");
 
@@ -13,8 +13,6 @@ const displayPosts = (json) => {
     if (!post["is_public"]) {
       return;
     }
-    console.log(post);
-
     // Card Container
     const cardContainer = document.createElement("div");
     cardContainer.setAttribute("class", "grid__post");
@@ -58,25 +56,6 @@ const displayPosts = (json) => {
   });
 };
 
-const getAllPosts = (userId) => {
-  let url = API_URL;
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Display data in an HTML element
-      displayPosts(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
-
-getAllPosts();
+fetchPosts()
+  .then(displayPosts)
+  .catch((error) => console.error("Error:", error));
