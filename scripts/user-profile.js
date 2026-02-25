@@ -1,7 +1,7 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js";
 import { toggleHeart } from "./utils.js";
-import { fetchPosts } from "./grid.js";
+import { fetchPosts } from "../pages/grid/scripts/grid.js";
 
 // Use real sessionStorage when available, fall back to fake data for development
 const sessionStr = sessionStorage.getItem("userProfile");
