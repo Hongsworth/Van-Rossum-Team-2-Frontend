@@ -21,8 +21,7 @@
     <link rel="stylesheet" href="../../styles/styles.css" />
     <link rel="stylesheet" href="../../styles/user-profile.css" />
   </head>
-  <body class="body-montserrat-regular">
-
+  <body class="body-with-image montserrat-regular">
     <!-- Header -->
     <header class="heading">
       <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
@@ -33,7 +32,6 @@
 
     <!-- Main Content -->
     <main class="profile">
-
       <!-- Profile Header & Stats -->
       <section class="profile__header">
         <h2 class="profile__username" id="profileUsername">Posts</h2>
@@ -47,8 +45,8 @@
             <span class="profile__stat-label">Breeds Encountered</span>
           </div>
           <div class="profile__stat">
-            <span class="profile__stat-number" id="totalLikes">0</span>
-            <span class="profile__stat-label">Total Likes</span>
+            <span class="profile__stat-number" id="totalHearts">0</span>
+            <span class="profile__stat-label">Total Hearts</span>
           </div>
         </div>
       </section>
@@ -56,14 +54,14 @@
       <hr class="profile__divider" />
 
       <!-- Posts Feed -->
-      <section class="posts-feed" id="postsFeed">
+      <section class="grid__container" id="postsFeed">
         <!-- Post cards injected by user-profile.js -->
       </section>
-
     </main>
 
     <script type="module" src="../../scripts/index.js"></script>
     <script type="module" src="../../scripts/hamburger.js" defer></script>
+    <script type="module" src="../../scripts/grid.js"></script>
     <script src="../../scripts/user-profile.js" type="module"></script>
   </body>
 </html>

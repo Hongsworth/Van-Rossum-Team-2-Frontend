@@ -1,4 +1,4 @@
-const API_URL = "https://van-rossum-team-2-production.up.railway.app/api";
+const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 
 const gridContainer = document.querySelector(".grid__container");
 
@@ -13,11 +13,13 @@ const displayPosts = (json) => {
     if (!post["is_public"]) {
       return;
     }
-    console.log(post);
-
     // Card Container
     const cardContainer = document.createElement("div");
     cardContainer.setAttribute("class", "grid__post");
+    cardContainer.style.cursor = "pointer";
+    cardContainer.addEventListener("click", () => {
+      window.location.href = `/pages/post-detail/post-detail.html?id=${post["id"]}`;
+    });
     gridContainer.appendChild(cardContainer);
 
     //Card Body
@@ -54,44 +56,15 @@ const displayPosts = (json) => {
   });
 };
 
-const getAllPosts = (userId) => {
-  let url = API_URL + "/posts";
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  get(url);
+// Fetches posts from the API. Pass a userId to get user-specific posts.
+export const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) url += "/userPosts?userId=" + userId;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
 };
 
-const searchPosts = (search) => {
-  let url = API_URL + "/posts/search?search=" + search;
-  get(url);
-};
-
-const get = (url) => {
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Display data in an HTML element
-      displayPosts(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
-
-getAllPosts();
-const searchBar = document.querySelector(".search");
-const searchQuery = document.querySelector(".search__input");
-searchBar.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (searchQuery.value == "") {
-    getAllPosts();
-  } else {
-    searchPosts(searchQuery.value);
-  }
-});
+fetchPosts()
+  .then(displayPosts)
+  .catch((error) => console.error("Error:", error));

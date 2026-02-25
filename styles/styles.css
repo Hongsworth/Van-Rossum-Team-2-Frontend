@@ -1,4 +1,4 @@
-.body {
+.body-with-image {
   background-image: linear-gradient(rgba(255, 255, 225, 0.6), rgba(255, 255, 255, 0.6)), url("../images/okeykat-w6elADh_jww-unsplash.jpg");
   background-position: center;
   background-size: cover;
@@ -77,6 +77,7 @@
     width: 30%;
     padding: 10px 0;
     left: 50%;
+    bottom: auto;
   }
 }
 @media only screen and (min-width: 1201px) {
@@ -90,7 +91,7 @@
     left: 65%;
     transform: translateX(-20%);
     padding: 10px 0;
-    bottom: none;
+    bottom: auto;
   }
 }
 .menu--show {
