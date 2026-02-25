@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <link rel="stylesheet" href="../styles/login.css" />
+    </head>
+    <body>
+        <form class="login-form" id="login-form">
+            <div class="login-form__title"></div>
+            <label for="username">Username:</label>
+            <input
+                type="text"
+                placeholder="Username"
+                class="login-form__username"
+                id="username"
+                required
+            />
+            <label for="password">Password:</label>
+            <input
+                type="password"
+                placeholder="Password"
+                class="login-form__password"
+                id="password"
+                required
+            />
+            <button type="submit" class="login-form__submitButton">
+                Sign In
+            </button>
+
+            <div class="login-form__signup">
+                Don't have an account?
+                <a href="#" id="show-register">Create one</a>
+            </div>
+        </form>
+
+        <form class="register-form hidden" id="register-form">
+            <div class="register-form__title"></div>
+            <label for="register-form__email">Email:</label>
+            <input
+                type="email"
+                placeholder="Email"
+                class="register-form__email"
+                id="register-form__email"
+                required
+            />
+            <label for="register-form__username">Username:</label>
+            <input
+                type="text"
+                placeholder="Username"
+                class="register-form__username"
+                id="register-form__username"
+                required
+            />
+            <label for="register-form__password">Password:</label>
+            <input
+                type="password"
+                placeholder="Password"
+                class="register-form__password"
+                id="register-form__password"
+                required
+            />
+            <button type="submit" class="register-form__submitButton">
+                Sign Up
+            </button>
+            <div class="login-form__signup">
+                Have an account?
+                <a href="#" id="show-login">Sign in</a>
+            </div>
+        </form>
+    </body>
+    <script src="../scripts/login.js"></script>
+    <script src="../scripts/register.js"></script>
+    <script src="../scripts/form-switch.js"></script>
+</html>
