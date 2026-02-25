@@ -1,5 +1,6 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js";
+import { toggleHeart } from "./utils.js";
 
 const API_URL = "http://localhost:8080/api/v1/";
 
@@ -76,8 +77,7 @@ const createPostCard = (post) => {
 
   heartBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    const icon = heartBtn.querySelector(".post-card__heart-icon");
-    icon.textContent = icon.textContent === "favorite_border" ? "favorite" : "favorite_border";
+    toggleHeart(heartBtn);
   });
 
   hearts.appendChild(heartBtn);

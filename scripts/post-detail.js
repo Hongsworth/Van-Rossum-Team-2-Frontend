@@ -1,5 +1,6 @@
 // Post Detail page — reads ?id= from URL, fetches post, renders it, wires Next.
 import { fakePosts } from "../data/fake-user.js";
+import { toggleHeart } from "./utils.js";
 
 const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 
@@ -50,10 +51,7 @@ const renderPost = (raw) => {
 };
 
 // -- Heart button toggle --
-heartBtn.addEventListener("click", () => {
-  const icon = heartBtn.querySelector(".post-detail__heart-icon");
-  icon.textContent = icon.textContent === "favorite_border" ? "favorite" : "favorite_border";
-});
+heartBtn.addEventListener("click", () => toggleHeart(heartBtn));
 
 // -- Load all posts, render current, wire Next button --
 const loadPost = async (id) => {
