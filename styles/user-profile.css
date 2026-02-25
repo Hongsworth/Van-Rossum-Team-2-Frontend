@@ -22,44 +22,52 @@ body {
   line-height: 1.2;
 }
 
-.profile {
+.profile,
+grid {
   max-width: 960px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
-.profile__header {
+.profile__header,
+grid__header {
   text-align: center;
   margin-bottom: 2.5rem;
 }
-.profile__username {
+.profile__username,
+grid__username {
   font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
-.profile__stats {
+.profile__stats,
+grid__stats {
   display: flex;
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
 }
-.profile__stat {
+.profile__stat,
+grid__stat {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
 }
-.profile__stat-number {
+.profile__stat-number,
+grid__stat-number {
   font-size: 2rem;
   font-weight: 700;
   color: #333;
 }
-.profile__stat-label {
+.profile__stat-label,
+grid__stat-label {
   font-size: 0.75rem;
   color: #777;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.profile__divider {
+.profile__divider,
+grid__divider {
   border: none;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin: 1.5rem 0 2rem;

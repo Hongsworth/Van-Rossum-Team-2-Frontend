@@ -1,6 +1,7 @@
 // Post Detail page — reads ?id= from URL, fetches post, renders it, wires Next.
 import { fakePosts } from "../data/fake-user.js";
-import { fetchPosts, toggleHeart } from "./utils.js";
+import { toggleHeart } from "./utils.js";
+import { fetchPosts } from "../pages/grid/scripts/grid.js";
 
 // -- DOM refs --
 const postImage = document.getElementById("postImage");
@@ -42,7 +43,11 @@ const renderPost = (raw) => {
   if (post.createdAt) {
     const date = new Date(post.createdAt);
     postDatetime.textContent =
-      date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) +
+      date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      }) +
       " · " +
       date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
   }
@@ -58,7 +63,10 @@ const loadPost = async (id) => {
   try {
     allPosts = await fetchPosts();
   } catch (err) {
-    console.warn("Could not load posts from API, using fake data:", err.message);
+    console.warn(
+      "Could not load posts from API, using fake data:",
+      err.message,
+    );
     allPosts = fakePosts;
   }
 

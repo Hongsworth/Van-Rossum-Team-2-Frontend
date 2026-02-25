@@ -59,7 +59,9 @@ const displayPosts = (json) => {
 // Fetches posts from the API. Pass a userId to get user-specific posts.
 export const fetchPosts = async (userId = null) => {
   let url = API_URL;
-  if (userId != null) url += "/userPosts?userId=" + userId;
+  if (userId != null) {
+    url += "/userPosts?userId=" + userId;
+  }
   const response = await fetch(url);
   if (!response.ok) throw new Error("Network response was not ok");
   return response.json();
