@@ -84,5 +84,14 @@ const get = (url) => {
     });
 };
 
-//getAllPosts();
-searchPosts("oh");
+getAllPosts();
+const searchBar = document.querySelector(".search");
+const searchQuery = document.querySelector(".search__input");
+searchBar.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (searchQuery.value == "") {
+    getAllPosts();
+  } else {
+    searchPosts(searchQuery.value);
+  }
+});
