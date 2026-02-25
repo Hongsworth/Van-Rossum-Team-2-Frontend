@@ -1,4 +1,4 @@
-const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
+const API_URL = "https://van-rossum-team-2-production.up.railway.app/api";
 
 const gridContainer = document.querySelector(".grid__container");
 
@@ -55,10 +55,19 @@ const displayPosts = (json) => {
 };
 
 const getAllPosts = (userId) => {
-  let url = API_URL;
+  let url = API_URL + "/posts";
   if (userId != null) {
     url += "/userPosts?userId=" + userId;
   }
+  get(url);
+};
+
+const searchPosts = (search) => {
+  let url = API_URL + "/posts/search?search=" + search;
+  get(url);
+};
+
+const get = (url) => {
   fetch(url)
     .then((response) => {
       if (!response.ok) {
@@ -75,4 +84,5 @@ const getAllPosts = (userId) => {
     });
 };
 
-getAllPosts();
+//getAllPosts();
+searchPosts("oh");
