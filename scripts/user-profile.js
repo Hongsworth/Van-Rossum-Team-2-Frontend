@@ -13,7 +13,7 @@ const currentUser =
 const profileUsernameEl = document.getElementById("profileUsername");
 const totalPostsEl = document.getElementById("totalPosts");
 const breedsCountEl = document.getElementById("breedsCount");
-const totalLikesEl = document.getElementById("totalLikes");
+const totalHeartsEl = document.getElementById("totalHearts");
 const postsFeed = document.getElementById("postsFeed");
 
 // Set page title
@@ -23,6 +23,10 @@ profileUsernameEl.textContent = `${currentUser.name} Posts`;
 const createPostCard = (post) => {
   const card = document.createElement("article");
   card.classList.add("post-card");
+  card.style.cursor = "pointer";
+  card.addEventListener("click", () => {
+    window.location.href = `/pages/post-detail/post-detail.html?id=${post.id}`;
+  });
 
   // Photo
   const img = document.createElement("img");
@@ -60,27 +64,28 @@ const createPostCard = (post) => {
   }
 
   // Heart placeholder
-  const likes = document.createElement("div");
-  likes.classList.add("post-card__likes");
+  const hearts = document.createElement("div");
+  hearts.classList.add("post-card__hearts");
 
   const heartBtn = document.createElement("button");
   heartBtn.classList.add("post-card__heart-btn");
   heartBtn.innerHTML = `
     <span class="material-icons post-card__heart-icon">favorite_border</span>
-    <span class="post-card__heart-count">${post.likes ?? 0}</span>
+    <span class="post-card__heart-count">${post.hearts ?? 0}</span>
   `;
 
-  heartBtn.addEventListener("click", () => {
+  heartBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     const icon = heartBtn.querySelector(".post-card__heart-icon");
     icon.textContent = icon.textContent === "favorite_border" ? "favorite" : "favorite_border";
   });
 
-  likes.appendChild(heartBtn);
+  hearts.appendChild(heartBtn);
 
   body.appendChild(caption);
   body.appendChild(location);
   if (post.createdAt) body.appendChild(dateTime);
-  body.appendChild(likes);
+  body.appendChild(hearts);
 
   card.appendChild(img);
   card.appendChild(body);
@@ -91,11 +96,11 @@ const createPostCard = (post) => {
 // -- Compute and display stats --
 const renderStats = (posts) => {
   const uniqueBreeds = new Set(posts.map((p) => p.breed).filter(Boolean));
-  const totalLikes = posts.reduce((sum, p) => sum + (p.likes ?? 0), 0);
+  const totalHearts = posts.reduce((sum, p) => sum + (p.hearts ?? 0), 0);
 
   totalPostsEl.textContent = posts.length;
   breedsCountEl.textContent = uniqueBreeds.size;
-  totalLikesEl.textContent = totalLikes;
+  totalHeartsEl.textContent = totalHearts;
 };
 
 // -- Render all posts --

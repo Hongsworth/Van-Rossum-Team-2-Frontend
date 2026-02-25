@@ -160,7 +160,7 @@ body {
   font-size: 0.9rem;
   color: #aaa;
 }
-.post-card__likes {
+.post-card__hearts {
   display: flex;
   align-items: center;
   padding-top: 0.25rem;

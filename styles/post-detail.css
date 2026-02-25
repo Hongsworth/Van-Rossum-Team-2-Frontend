@@ -1,0 +1,158 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f5e6ed;
+  min-height: 100vh;
+}
+
+.heading {
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.45);
+}
+.heading__title {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.post-detail {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+.post-detail__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.post-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: #777;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  transition: background-color 0.15s;
+}
+.post-detail__back:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.post-detail__back-icon {
+  font-size: 1.1rem;
+}
+.post-detail__next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  color: #777;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  transition: background-color 0.15s;
+}
+.post-detail__next:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.post-detail__next:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.post-detail__next-icon {
+  font-size: 1.1rem;
+}
+.post-detail__image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  background-color: #e0e0e0;
+  margin-bottom: 1.5rem;
+}
+@media only screen and (max-width: 767px) {
+  .post-detail__image {
+    height: 260px;
+  }
+}
+.post-detail__info {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.post-detail__breed {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+}
+.post-detail__caption {
+  font-style: italic;
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+.post-detail__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.post-detail__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+.post-detail__meta-icon {
+  font-size: 1rem;
+  color: #aaa;
+}
+.post-detail__hearts {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+.post-detail__heart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+  color: #e05c7a;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.15s;
+}
+.post-detail__heart-btn:hover {
+  background-color: rgba(224, 92, 122, 0.08);
+}
+.post-detail__heart-icon {
+  font-size: 1.4rem;
+}
+.post-detail__heart-count {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/*# sourceMappingURL=post-detail.css.map */

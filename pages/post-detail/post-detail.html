@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PuppyLand - Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../styles/styles.css" />
+    <link rel="stylesheet" href="../../styles/post-detail.css" />
+  </head>
+  <body class="body-montserrat-regular">
+
+    <!-- Header -->
+    <header class="heading">
+      <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
+    </header>
+
+    <!-- Nav -->
+    <nav id="navbar"></nav>
+
+    <!-- Main Content -->
+    <main class="post-detail">
+
+      <!-- Navigation -->
+      <div class="post-detail__nav">
+        <a href="javascript:history.back()" class="post-detail__back">
+          <span class="material-icons post-detail__back-icon">arrow_back</span>
+          Back
+        </a>
+        <button class="post-detail__next" id="nextBtn" disabled>
+          Next
+          <span class="material-icons post-detail__next-icon">arrow_forward</span>
+        </button>
+      </div>
+
+      <!-- Post image -->
+      <img
+        class="post-detail__image"
+        id="postImage"
+        src=""
+        alt="Dog photo"
+      />
+
+      <!-- Post metadata -->
+      <section class="post-detail__info">
+
+        <h2 class="post-detail__breed" id="postBreed"></h2>
+
+        <p class="post-detail__caption" id="postCaption"></p>
+
+        <div class="post-detail__meta">
+          <span class="post-detail__meta-item">
+            <span class="material-icons post-detail__meta-icon">location_on</span>
+            <span id="postLocation">Unknown location</span>
+          </span>
+          <span class="post-detail__meta-item">
+            <span class="material-icons post-detail__meta-icon">schedule</span>
+            <span id="postDatetime"></span>
+          </span>
+        </div>
+
+        <div class="post-detail__hearts">
+          <button class="post-detail__heart-btn" id="heartBtn">
+            <span class="material-icons post-detail__heart-icon">favorite_border</span>
+            <span class="post-detail__heart-count" id="postHearts">0</span>
+          </button>
+        </div>
+
+      </section>
+
+    </main>
+
+    <script type="module" src="../../scripts/index.js"></script>
+    <script type="module" src="../../scripts/hamburger.js" defer></script>
+    <script type="module" src="../../scripts/post-detail.js"></script>
+  </body>
+</html>

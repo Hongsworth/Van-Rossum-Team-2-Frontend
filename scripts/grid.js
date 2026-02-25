@@ -18,6 +18,10 @@ const displayPosts = (json) => {
     // Card Container
     const cardContainer = document.createElement("div");
     cardContainer.setAttribute("class", "grid__post");
+    cardContainer.style.cursor = "pointer";
+    cardContainer.addEventListener("click", () => {
+      window.location.href = `/pages/post-detail/post-detail.html?id=${post["id"]}`;
+    });
     gridContainer.appendChild(cardContainer);
 
     //Card Body
