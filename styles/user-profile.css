@@ -37,56 +37,6 @@ body {
   line-height: 1.2;
 }
 
-.nav {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.5rem 1rem;
-}
-.nav__toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.15s;
-}
-.nav__toggle:hover {
-  background-color: rgba(0, 0, 0, 0.06);
-}
-.nav__toggle .material-icons {
-  font-size: 1.75rem;
-}
-.nav__dropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% - 0.25rem);
-  right: 1rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  list-style: none;
-  min-width: 180px;
-  z-index: 99;
-  overflow: hidden;
-}
-.nav__dropdown.nav__dropdown--open {
-  display: block;
-}
-.nav__link {
-  display: block;
-  padding: 0.75rem 1.25rem;
-  color: #333;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: background-color 0.15s;
-}
-.nav__link:hover {
-  background-color: #f5e6ed;
-}
-
 .profile {
   max-width: 960px;
   margin: 2rem auto;

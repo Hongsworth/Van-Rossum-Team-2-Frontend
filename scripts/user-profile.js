@@ -1,18 +1,5 @@
 // Profile page — loads user data and their posts, renders stats and cards.
-import fakeUserSessionData, { fakePosts } from "../data/fakeUser.js";
-
-// -- Nav dropdown toggle --
-const navToggle = document.getElementById("navToggle");
-const navDropdown = document.getElementById("navDropdown");
-
-navToggle.addEventListener("click", (e) => {
-  e.stopPropagation();
-  navDropdown.classList.toggle("nav__dropdown--open");
-});
-
-document.addEventListener("click", () => {
-  navDropdown.classList.remove("nav__dropdown--open");
-});
+import fakeUserSessionData, { fakePosts } from "../data/fake-user.js";
 
 const API_URL = "http://localhost:8080/api/v1/";
 

@@ -24,7 +24,7 @@ export const fakePosts = [
   },
   {
     imageUrl: "https://placedog.net/600/402",
-    description: "Bod gave me the best treats. All I had to do was to pose for a photo.",
+    description: "Bob gave me the best treats. All I had to do was to pose for a photo.",
     location: "Hyde Park, London",
     breed: "Golden Retriever",
     likes: 141,
