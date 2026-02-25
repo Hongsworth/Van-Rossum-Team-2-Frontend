@@ -7,7 +7,6 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
   background-color: #f5e6ed;
   min-height: 100vh;
 }
@@ -58,7 +57,6 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: "Montserrat", sans-serif;
   color: #777;
   font-size: 0.875rem;
   border-radius: 6px;
@@ -137,7 +135,6 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   color: #e05c7a;
   padding: 0.3rem 0.6rem;

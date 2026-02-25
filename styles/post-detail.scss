@@ -1,9 +1,6 @@
 // =====================
 // Variables
 // =====================
-$font-branding: "Imperial Script", cursive;
-$font-body: "Montserrat", sans-serif;
-
 $color-bg: #f5e6ed;
 $color-white: #fff;
 $color-card-shadow: rgba(0, 0, 0, 0.08);
@@ -48,7 +45,6 @@ $detail-max-width: 720px;
 }
 
 body {
-  font-family: $font-body;
   background-color: $color-bg;
   min-height: 100vh;
 }
@@ -110,7 +106,6 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-family: $font-body;
     color: $color-text-muted;
     font-size: 0.875rem;
     border-radius: $border-radius-btn;
@@ -200,7 +195,6 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    font-family: $font-body;
     font-size: 0.95rem;
     color: #e05c7a;
     padding: 0.3rem 0.6rem;
