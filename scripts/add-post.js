@@ -58,7 +58,7 @@ document.querySelector("#add-post").addEventListener("submit", (event) => {
 
     uploadToS3Async(photo).then((response) => {
         // Call our own API to store the actual post
-
+        console.log(response);
         fetch("https://van-rossum-team-2-production.up.railway.app/api/posts", {
             method: "POST",
             headers: {
