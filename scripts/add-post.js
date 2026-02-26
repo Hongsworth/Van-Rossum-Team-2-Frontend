@@ -62,8 +62,8 @@ document.querySelector('#add-post').addEventListener('submit', (event) => {
                 isPublic: yes.checked,
             }),
         });
-        location.href = "/pages/user-profile/user-profile.html";
     });
+    alert("Post submitted");
 });
 
 document.querySelector("#photo")
