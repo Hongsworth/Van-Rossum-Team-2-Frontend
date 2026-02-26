@@ -18,7 +18,7 @@ const createOptionTag = (string) => {
     option.value = string;
     option.innerText = string;
     return option;
-}
+};
 
 const getBreeds = async () => {
     const dropdown = document.querySelector("#breedList");
@@ -27,41 +27,49 @@ const getBreeds = async () => {
         throw new Error("There is an issue loading the Breed data");
     }
     const data = await response.json();
-    data.breeds.forEach(breed => {
+    data.breeds.forEach((breed) => {
         dropdown.appendChild(createOptionTag(breed));
     });
 };
 
 getBreeds();
 
-document
-    .querySelector("#add-post")
-    .addEventListener("submit", (event) => {
-        event.preventDefault();
-        console.log("I am submitting tings...");
-        const breed = document.querySelector("#breedList").selectedOptions[0].value;
-        const dogName = document.querySelector("#dog_name").value;
-        const location = document.querySelector("#location").value;
-        const caption = document.querySelector("#caption").value;
-        const photo = document.querySelector("#photo").files[0];
+document.querySelector("#add-post").addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log("I am submitting tings...");
+    const breed = document.querySelector("#breedList").selectedOptions[0].value;
+    const dogName = document.querySelector("#dog_name").value;
+    const location = document.querySelector("#location").value;
+    const caption = document.querySelector("#caption").value;
+    const photo = document.querySelector("#photo").files[0];
 
-        console.log("breed:", breed, "dogName:", dogName, "location:", location, "caption:", caption, "photo:", (photo !== null ? "True" : "False"));
+    console.log(
+        "breed:",
+        breed,
+        "dogName:",
+        dogName,
+        "location:",
+        location,
+        "caption:",
+        caption,
+        "photo:",
+        photo !== null ? "True" : "False",
+    );
 
-        // uploadToS3Async(photo)
-        // .then(response => {
-        //     // Call our own API to store the actual post
+    uploadToS3Async(photo).then((response) => {
+        // Call our own API to store the actual post
 
-        //     fetch("https://van-rossum-team-2-production.up.railway.app/api/posts", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify({
-        //             breed_name: breed,
-        //             dog_name: dogName,
-        //             location,
-        //             photo_url: response.photo_url
-        //         })
-        //     });
-        // });
+        fetch("https://van-rossum-team-2-production.up.railway.app/api/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                breed_name: breed,
+                dog_name: dogName,
+                location,
+                photo_url: response.url,
+            }),
+        });
     });
+});
