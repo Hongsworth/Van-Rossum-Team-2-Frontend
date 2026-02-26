@@ -125,6 +125,15 @@ grid__divider {
   flex-direction: column;
   gap: 0.5rem;
 }
+.grid__post--name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+.grid__post--breed {
+  font-size: 0.85rem;
+  color: #888;
+}
 .grid__post--caption {
   font-style: italic;
   font-size: 0.9rem;
