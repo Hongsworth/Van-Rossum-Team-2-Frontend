@@ -1,12 +1,10 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js"; // TODO: remove when login saves session
 import { toggleHeart } from "./utils.js";
-import { fetchPosts } from "../pages/grid/scripts/grid.js";
+import { fetchAndDisplayPosts } from "../pages/grid/scripts/grid.js";
 
 const sessionStr = sessionStorage.getItem("userProfile");
 const sessionUser = sessionStr ? JSON.parse(sessionStr) : null;
-// TODO: remove fakeUserSessionData fallback when login is wired up
-const currentUser = sessionUser?.isLoggedIn ? sessionUser : fakeUserSessionData;
 
 // -- DOM refs --
 const profileUsernameEl = document.getElementById("profileUsername");
@@ -16,7 +14,7 @@ const totalHeartsEl = document.getElementById("totalHearts");
 const postsFeed = document.getElementById("postsFeed");
 
 // Set page title
-profileUsernameEl.textContent = `${currentUser.name} Posts`;
+profileUsernameEl.textContent = `${sessionUser.name} Posts`;
 
 // -- Render a single post card --
 const createPostCard = (post) => {
@@ -109,7 +107,9 @@ const createPostCard = (post) => {
 
 // -- Compute and display stats --
 const renderStats = (posts) => {
-  const uniqueBreeds = new Set(posts.map((p) => p.breed_name || p.breed).filter(Boolean));
+  const uniqueBreeds = new Set(
+    posts.map((p) => p.breed_name || p.breed).filter(Boolean),
+  );
   const totalHearts = posts.reduce((sum, p) => sum + (p.hearts ?? 0), 0);
 
   totalPostsEl.textContent = posts.length;
@@ -139,21 +139,15 @@ const renderPosts = (posts) => {
 
 // -- Fetch posts from API --
 const loadUserPosts = async () => {
-  // TODO: remove fake data fallback when login is wired up
-  if (!currentUser.id) {
-    renderStats(fakePosts);
-    renderPosts(fakePosts);
-    return;
-  }
-
+  console.log("Current user:", sessionUser);
+  console.log("Current user ID:", sessionUser?.id);
   try {
-    const posts = await fetchPosts(currentUser.id);
+    const posts = await fetchAndDisplayPosts(sessionUser.id, "", false);
+    console.log(posts);
     renderStats(posts);
     renderPosts(posts);
   } catch (err) {
-    // TODO: remove fake data fallback when login is wired up
-    renderStats(fakePosts);
-    renderPosts(fakePosts);
+    console.error(err);
   }
 };
 
