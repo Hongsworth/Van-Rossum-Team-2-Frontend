@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../../../styles/add-post.css">
+</head>
+
+<body class="body body-with-image montserrat-regular">
+    <header class="heading">
+        <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
+    </header>
+
+    <nav id="navbar"></nav>
+
+    <div class="form-container">
+        <h2 class="heading-h2">Create Post</h2>
+        <form class="add-post" id="add-post">
+            <label class="add-post__label" for="breedList">Breed:</label>
+            <select class="add-post__menu montserrat-regular" id="breedList"
+                name="breedList">
+                <option value="" selected>Select a breed...</option>
+            </select><br>
+
+            <label class="add-post__label" for="dog_name">Dog Name:</label>
+            <input class="add-post__field montserrat-regular" type="text"
+                id="dog_name" name="dog_name"><br>
+
+            <label class="add-post__label" for="location">Location:</label>
+            <input class="add-post__field montserrat-regular" type="text"
+                id="location" name="location"><br>
+
+            <label class="add-post__label" for="caption">Caption:</label>
+            <textarea class="add-post__field montserrat-regular" name="caption"
+                id="caption" cols="20" rows="10"></textarea><br>
+
+            <label class="add-post__label" for="photo">Photo:</label>
+            <input class="add-post__btn" type="file" name="photo" id="photo"
+                accept="image/*" required><br>
+
+            <input class="add-post__submit btn" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+<script type="module" src="../../../scripts/add-post.js"></script>
+<script type="module" src="../../scripts/hamburger.js"></script>
+
+</html>

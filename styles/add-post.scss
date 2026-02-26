@@ -1,0 +1,88 @@
+@use "./modules/fonts";
+@use "./modules/body";
+@use "./modules/mixins";
+@use "./modules/hamburger";
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include mixins.laptop {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    @include mixins.monitor {
+        height: 100vh;
+        width: 100vw;
+    }
+}
+
+.heading-h2 {
+    margin-top: 20px;
+
+    @include mixins.laptop {
+        font-size: 30px;
+    }
+
+    @include mixins.monitor {
+        font-size: 30px;
+    }
+}
+
+.add-post {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-items: left;
+
+    &__label {
+        font-weight: 600;
+        margin: 5px;
+
+        @include mixins.laptop {
+            font-size: 20px;
+        }
+
+        @include mixins.monitor {
+            font-size: 20px;
+        }
+    }
+
+    &__field {
+        font-size: 20px;
+        padding: 5px;
+
+        @include mixins.laptop {
+            font-size: 24px;
+        }
+
+        @include mixins.monitor {
+            font-size: 24px;
+        }
+    }
+
+    &__menu {
+        font-size: 20px;
+    }
+
+    &__btn {
+        font-size: 18px;
+
+        @include mixins.laptop {
+            font-size: 20px;
+        }
+
+        @include mixins.monitor {
+            font-size: 20px;
+        }
+    }
+
+    &__submit {
+        margin-top: 20px;
+        padding: 10px 0;
+        font-size: 20px;
+    }
+}
