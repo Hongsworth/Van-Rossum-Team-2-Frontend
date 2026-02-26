@@ -27,6 +27,6 @@ document
         )
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
+                sessionStorage.setItem("userProfile", JSON.stringify(response));
             });
     });

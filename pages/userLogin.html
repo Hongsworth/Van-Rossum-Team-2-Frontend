@@ -4,73 +4,118 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="../styles/login.css" />
     </head>
-    <body>
-        <form class="login-form" id="login-form">
-            <div class="login-form__title"></div>
-            <label for="username">Username:</label>
-            <input
-                type="text"
-                placeholder="Username"
-                class="login-form__username"
-                id="username"
-                required
-            />
-            <label for="password">Password:</label>
-            <input
-                type="password"
-                placeholder="Password"
-                class="login-form__password"
-                id="password"
-                required
-            />
-            <button type="submit" class="login-form__submitButton">
-                Sign In
-            </button>
+    <body class="body-with-image">
+        <header class="heading">
+            <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
+        </header>
 
-            <div class="login-form__signup">
-                Don't have an account?
-                <a href="#" id="show-register">Create one</a>
-            </div>
-        </form>
+        <nav id="navbar"></nav>
+        <div class="form-container">
+            <form class="form login-form" id="login-form">
+                <div class="form__title montserrat-regular">Sign In</div>
+                <label for="username" class="montserrat-regular"
+                    >Username:</label
+                >
+                <input
+                    type="text"
+                    placeholder="Username"
+                    class="login-form__username"
+                    id="username"
+                    required
+                />
+                <label for="password" class="montserrat-regular"
+                    >Password:</label
+                >
+                <input
+                    type="password"
+                    placeholder="Password"
+                    class="login-form__password"
+                    id="password"
+                    required
+                />
+                <button
+                    type="submit"
+                    class="login-form__submitButton montserrat-regular"
+                >
+                    Sign In
+                </button>
 
-        <form class="register-form hidden" id="register-form">
-            <div class="register-form__title"></div>
-            <label for="register-form__email">Email:</label>
-            <input
-                type="email"
-                placeholder="Email"
-                class="register-form__email"
-                id="register-form__email"
-                required
-            />
-            <label for="register-form__username">Username:</label>
-            <input
-                type="text"
-                placeholder="Username"
-                class="register-form__username"
-                id="register-form__username"
-                required
-            />
-            <label for="register-form__password">Password:</label>
-            <input
-                type="password"
-                placeholder="Password"
-                class="register-form__password"
-                id="register-form__password"
-                required
-            />
-            <button type="submit" class="register-form__submitButton">
-                Sign Up
-            </button>
-            <div class="login-form__signup">
-                Have an account?
-                <a href="#" id="show-login">Sign in</a>
-            </div>
-        </form>
+                <div class="login-form__signup montserrat-regular">
+                    Don't have an account?
+                    <a href="#" id="show-register" class="montserrat-regular"
+                        >Create one</a
+                    >
+                </div>
+            </form>
+
+            <form class="form register-form hidden" id="register-form">
+                <div class="form__title montserrat-regular">Register</div>
+                <label for="register-form__email" class="montserrat-regular"
+                    >Email:</label
+                >
+                <input
+                    type="email"
+                    placeholder="Email"
+                    class="register-form__email"
+                    id="register-form__email"
+                    required
+                />
+                <label for="register-form__username" class="montserrat-regular"
+                    >Username:</label
+                >
+                <input
+                    type="text"
+                    placeholder="Username"
+                    class="register-form__username"
+                    id="register-form__username"
+                    required
+                />
+                <label
+                    for="register-form__password montserrat-regular"
+                    class="montserrat-regular"
+                    >Password:</label
+                >
+                <input
+                    type="password"
+                    placeholder="Password"
+                    class="register-form__password"
+                    id="register-form__password"
+                    required
+                />
+                <button
+                    type="submit"
+                    class="register-form__submitButton montserrat-regular"
+                >
+                    Sign Up
+                </button>
+                <div class="login-form__signup montserrat-regular">
+                    Have an account?
+                    <a href="#" id="show-login" class="montserrat-regular"
+                        >Sign in</a
+                    >
+                </div>
+            </form>
+        </div>
     </body>
     <script src="../scripts/login.js"></script>
     <script src="../scripts/register.js"></script>
     <script src="../scripts/form-switch.js"></script>
+    <script type="module" src="../scripts/index.js"></script>
+    <script type="module" src="../scripts/hamburger.js" defer></script>
 </html>

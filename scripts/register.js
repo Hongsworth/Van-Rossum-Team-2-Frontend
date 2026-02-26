@@ -33,6 +33,27 @@ document
         })
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
-            });
+            })
+            .then(() =>
+                fetch(
+                    "https://van-rossum-team-2-production.up.railway.app/api/users/login",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name: username,
+                            password: password,
+                        }),
+                    },
+                )
+                    .then((response) => response.json())
+                    .then((response) => {
+                        sessionStorage.setItem(
+                            "userProfile",
+                            JSON.stringify(response),
+                        );
+                    }),
+            );
     });
