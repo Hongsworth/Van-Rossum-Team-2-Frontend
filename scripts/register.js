@@ -33,7 +33,6 @@ document
         })
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
             })
             .then(() =>
                 fetch(
@@ -51,12 +50,10 @@ document
                 )
                     .then((response) => response.json())
                     .then((response) => {
-                        console.log(response);
                         sessionStorage.setItem(
                             "userProfile",
                             JSON.stringify(response),
                         );
-                        console.log(sessionStorage.getItem("userProfile"));
                     }),
             );
     });
