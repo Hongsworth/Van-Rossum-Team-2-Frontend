@@ -1,0 +1,40 @@
+.search {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  margin: 20px;
+  img {
+    filter: drop-shadow(rgba(90, 40, 7, 0.74) 5px 5px 4px);
+  }
+
+  &__input {
+    width: 100%;
+    border: 3px solid rgba(255, 235, 185);
+    text-indent: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    height: 36px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: rgba(90, 40, 7, 0.74) 5px 5px 4px;
+    color: rgba(119, 79, 56);
+    &:focus {
+      color: rgb(63, 32, 13);
+    }
+  }
+
+  &__button {
+    width: 40px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none !important;
+  }
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
