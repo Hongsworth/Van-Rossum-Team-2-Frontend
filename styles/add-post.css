@@ -11,6 +11,20 @@
   font-style: normal;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f5e6ed;
+  min-height: 100vh;
+}
+
 .body-with-image {
   background-image: linear-gradient(rgba(255, 255, 225, 0.6), rgba(255, 255, 255, 0.6)), url("../images/okeykat-w6elADh_jww-unsplash.jpg");
   background-position: center;
@@ -19,8 +33,36 @@
 
 .heading {
   text-align: center;
+  padding: 1rem 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.45);
+}
+.heading__title {
+  font-size: 3rem;
+  line-height: 1.2;
 }
 
+.grid__post {
+  cursor: pointer;
+}
+
+.paw-trail {
+  position: fixed;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.5rem;
+  z-index: 9999;
+  animation: paw-fade 0.8s ease-out forwards;
+}
+
+@keyframes paw-fade {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .hamburger {
   position: fixed;
   z-index: 100;
@@ -153,6 +195,9 @@
   padding: 20px;
   justify-items: left;
 }
+.add-post__section {
+  margin-top: 30px;
+}
 .add-post__label {
   font-weight: 600;
   margin: 5px;
@@ -166,6 +211,15 @@
   .add-post__label {
     font-size: 20px;
   }
+}
+.add-post__label--file-select {
+  border: 1px solid rgb(143, 143, 157);
+  border-radius: 5px;
+  background-color: rgb(233, 233, 233);
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 400;
 }
 .add-post__field {
   font-size: 20px;
@@ -185,6 +239,7 @@
   font-size: 20px;
 }
 .add-post__btn {
+  visibility: hidden;
   font-size: 18px;
 }
 @media only screen and (min-width: 1081px) and (max-width: 1200px) {
@@ -201,4 +256,9 @@
   margin-top: 20px;
   padding: 10px 0;
   font-size: 20px;
+}
+
+.file-name {
+  margin-top: 20px;
+  margin-left: 10px;
 }
