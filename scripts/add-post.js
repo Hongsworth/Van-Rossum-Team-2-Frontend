@@ -5,8 +5,6 @@ import { uploadToS3Async } from './upload-to-s3-async.js';
 // Get the user profile object
 const userProfile = loadUserProfile();
 
-console.log(userProfile);
-
 // Add the menu/hamburger menu to the page
 document.querySelector('#navbar').innerHTML = getMenu();
 
@@ -66,3 +64,10 @@ document.querySelector('#add-post').addEventListener('submit', (event) => {
         });
     });
 });
+
+document.querySelector("#photo")
+    .addEventListener("change", (event) => {
+        const [file] = event.target.files;
+        const { name } = file;
+        document.querySelector(".file-name").textContent = `File: ${name}`;
+    });
