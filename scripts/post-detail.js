@@ -1,5 +1,14 @@
 // Post Detail page — reads ?id= from URL, fetches post, renders it, wires Next.
-import { fetchPosts, toggleHeart } from "./utils.js";
+import { toggleHeart } from "./utils.js";
+
+const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
+const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) url += "/userPosts?userId=" + userId;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
 
 // -- DOM refs --
 const postImage = document.getElementById("postImage");

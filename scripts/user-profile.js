@@ -1,6 +1,15 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js"; // TODO: remove when login saves session
-import { toggleHeart, fetchPosts } from "./utils.js";
+import { toggleHeart } from "./utils.js";
+
+const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
+const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) url += "/userPosts?userId=" + userId;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
 
 const sessionStr = sessionStorage.getItem("userProfile");
 const sessionUser = sessionStr ? JSON.parse(sessionStr) : null;
@@ -108,16 +117,10 @@ const renderStats = (posts) => {
 const renderPosts = (posts) => {
   postsFeed.innerHTML = "";
 
-  const sorted = [...posts].sort((a, b) => {
-    const dateA = new Date(a.created_at || a.createdAt || 0);
-    const dateB = new Date(b.created_at || b.createdAt || 0);
-    return dateB - dateA;
-  });
-
   // Store ordered IDs so post-detail Next button works from profile too
-  sessionStorage.setItem("gridPostIds", JSON.stringify(sorted.map((p) => p.id)));
+  sessionStorage.setItem("gridPostIds", JSON.stringify(posts.map((p) => p.id)));
 
-  if (!sorted.length) {
+  if (!posts.length) {
     const empty = document.createElement("p");
     empty.classList.add("posts-empty");
     empty.textContent = "No posts yet. Add your first dog encounter!";
@@ -125,7 +128,7 @@ const renderPosts = (posts) => {
     return;
   }
 
-  sorted.forEach((post) => {
+  posts.forEach((post) => {
     postsFeed.appendChild(createPostCard(post));
   });
 };

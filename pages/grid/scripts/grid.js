@@ -19,15 +19,12 @@ const displayPosts = (json) => {
     gridContainer.removeChild(gridContainer.firstChild);
   }
 
-  // Sort by most recent first
-  const sorted = [...json].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
   // Store the ordered list of public post IDs so post-detail can use them for Next navigation
-  const publicIds = sorted.filter(p => p["is_public"]).map(p => p["id"]);
+  const publicIds = json.filter(p => p["is_public"]).map(p => p["id"]);
   sessionStorage.setItem("gridPostIds", JSON.stringify(publicIds));
 
   //Generate HTML for all json objects that are returned
-  sorted.forEach((post) => {
+  json.forEach((post) => {
     // Skip posts that are not public
     if (!post["is_public"]) {
       return;
