@@ -79,12 +79,9 @@ export const fetchAndDisplayPosts = async (
     if (searchQuery) {
       url += `/search?search=${encodeURIComponent(searchQuery)}`;
       if (userId) url += `&userId=${userId}`;
-      console.log("Fetching SEARCH:", searchQuery);
     } else if (userId) {
       url += `/userPosts?userId=${userId}`;
-      console.log("Fetching posts for user:", userId);
     } else {
-      console.log("Fetching ALL posts");
     }
 
     const res = await fetch(url);

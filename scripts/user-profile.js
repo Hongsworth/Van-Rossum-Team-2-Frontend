@@ -139,16 +139,10 @@ const renderPosts = (posts) => {
 
 // -- Fetch posts from API --
 const loadUserPosts = async () => {
-  console.log("Current user:", sessionUser);
-  console.log("Current user ID:", sessionUser?.id);
   try {
     const posts = await fetchAndDisplayPosts(sessionUser.id, "", false);
-    console.log(posts);
     renderStats(posts);
     renderPosts(posts);
-  } catch (err) {
-    console.error(err);
-  }
+  } catch (err) {}
 };
-
 loadUserPosts();
