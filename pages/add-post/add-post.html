@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../../../styles/add-post.css">
 </head>
 
-<body class="body body-with-image montserrat-regular">
+<body class="body-with-image montserrat-regular">
     <header class="heading">
         <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
     </header>
@@ -49,6 +49,15 @@
             <label class="add-post__label" for="photo">Photo:</label>
             <input class="add-post__btn" type="file" name="photo" id="photo"
                 accept="image/*" required><br>
+
+            <label class="add-post__label" for="is-public">Show this be
+                public?
+                <input type="radio" name="is-public" id="is-public"
+                    value="true">Yes
+                <input type="radio" name="is-public" id="is-public"
+                    value="false" checked>No
+            </label>
+            <br>
 
             <input class="add-post__submit btn" type="submit" value="Submit">
         </form>

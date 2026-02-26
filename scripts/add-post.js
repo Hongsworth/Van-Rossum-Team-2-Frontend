@@ -8,11 +8,6 @@ const userProfile = loadUserProfile();
 // Add the menu/hamburger menu to the page
 document.querySelector("#navbar").innerHTML = getMenu();
 
-// If the user is not logged in then they should be uploading anything...
-if (!userProfile.isLoggedIn) {
-    throw new Error("You must be logged in before you can upload an image");
-}
-
 const createOptionTag = (string) => {
     const option = document.createElement("option");
     option.value = string;
@@ -36,25 +31,18 @@ getBreeds();
 
 document.querySelector("#add-post").addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log("I am submitting tings...");
+    // If the user is not logged in then they should be uploading anything...
+    if (!userProfile.isLoggedIn) {
+        alert("You must be logged in before you can upload an image");
+        throw new Error("You must be logged in before you can upload an image");
+    }
+
     const breed = document.querySelector("#breedList").selectedOptions[0].value;
     const dogName = document.querySelector("#dog_name").value;
     const location = document.querySelector("#location").value;
     const caption = document.querySelector("#caption").value;
     const photo = document.querySelector("#photo").files[0];
-
-    console.log(
-        "breed:",
-        breed,
-        "dogName:",
-        dogName,
-        "location:",
-        location,
-        "caption:",
-        caption,
-        "photo:",
-        photo !== null ? "True" : "False",
-    );
+    const [yes] = document.querySelectorAll('input[name="is-public"');
 
     uploadToS3Async(photo).then((response) => {
         // Call our own API to store the actual post
@@ -65,10 +53,13 @@ document.querySelector("#add-post").addEventListener("submit", (event) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                breed_name: breed,
                 dog_name: dogName,
+                breed_name: breed,
                 location,
+                caption,
                 photo_url: response.url,
+                userId: userProfile.id,
+                isPublic: yes.checked,
             }),
         });
     });
