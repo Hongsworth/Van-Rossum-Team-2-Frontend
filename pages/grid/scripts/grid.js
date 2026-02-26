@@ -74,6 +74,8 @@ const displayPosts = (json) => {
   });
 };
 
-fetchPosts()
-  .then(displayPosts)
-  .catch((error) => console.error("Error:", error));
+if (gridContainer) {
+  fetchPosts()
+    .then(displayPosts)
+    .catch((error) => console.error("Error:", error));
+}
