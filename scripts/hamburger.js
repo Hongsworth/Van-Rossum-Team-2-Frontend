@@ -27,7 +27,7 @@ const toggleMenu = () => {
 const userProfile = loadUserProfile();
 
 menuItems.forEach(menuItem => {
-    if (userProfile.isLoggedIn) {
+    if (userProfile.loggedin) {
         if (menuItem.classList.contains("menu__item--loggedIn"))
             menuItem.style.display = "block";
         if (menuItem.classList.contains("menu__item--loggedOut"))

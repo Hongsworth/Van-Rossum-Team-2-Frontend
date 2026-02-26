@@ -27,7 +27,7 @@
 .menu {
     background-color: rgba(255, 255, 255, 0.5);
     position: fixed;
-    transform: translateX(110%);
+    transform: translateX(120%);
     transition: transform 0.2s;
     top: 0;
     left: 40%;
@@ -37,10 +37,10 @@
     color: white;
     list-style: none;
     padding-top: 4rem;
-    width: 50%;
+    width: 60%;
 
     @include mixins.tablet-portrait {
-        left: 50%;
+        left: 60%;
         width: 40%;
     }
 
