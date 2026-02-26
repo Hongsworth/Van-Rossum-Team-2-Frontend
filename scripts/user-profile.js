@@ -38,6 +38,16 @@ const createPostCard = (post) => {
   const body = document.createElement("div");
   body.classList.add("grid__post__body");
 
+  // Dog name
+  const dogName = document.createElement("p");
+  dogName.classList.add("grid__post--name");
+  dogName.textContent = post.dog_name || "";
+
+  // Breed
+  const breed = document.createElement("p");
+  breed.classList.add("grid__post--breed");
+  breed.textContent = post.breed_name || post.breed || "";
+
   // Caption
   const caption = document.createElement("p");
   caption.classList.add("grid__post--caption");
@@ -84,6 +94,8 @@ const createPostCard = (post) => {
 
   hearts.appendChild(heartBtn);
 
+  body.appendChild(dogName);
+  body.appendChild(breed);
   body.appendChild(caption);
   body.appendChild(location);
   if (dateStr) body.appendChild(dateTime);
