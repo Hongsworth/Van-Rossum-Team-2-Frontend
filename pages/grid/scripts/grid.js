@@ -2,11 +2,27 @@ const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 
 const gridContainer = document.querySelector(".grid__container");
 
+// Fetches posts from the API. Pass a userId to get user-specific posts.
+export const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) {
+    url += "/userPosts?userId=" + userId;
+  }
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
+
 const displayPosts = (json) => {
   //Remove all current posts displayed
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.firstChild);
   }
+
+  // Store the ordered list of public post IDs so post-detail can use them for Next navigation
+  const publicIds = json.filter(p => p["is_public"]).map(p => p["id"]);
+  sessionStorage.setItem("gridPostIds", JSON.stringify(publicIds));
+
   //Generate HTML for all json objects that are returned
   json.forEach((post) => {
     // Skip posts that are not public
@@ -18,6 +34,7 @@ const displayPosts = (json) => {
     cardContainer.setAttribute("class", "grid__post");
     cardContainer.style.cursor = "pointer";
     cardContainer.addEventListener("click", () => {
+      sessionStorage.setItem("currentPost", JSON.stringify(post));
       window.location.href = `/pages/post-detail/post-detail.html?id=${post["id"]}`;
     });
     gridContainer.appendChild(cardContainer);
@@ -44,7 +61,8 @@ const displayPosts = (json) => {
     dogName.innerHTML = post["dog_name"];
     breedName.innerHTML = post["breed_name"];
     location.innerHTML = post["location"];
-    caption.innerHTML = post["caption"];
+    const captionText = post["caption"] || "";
+    caption.innerHTML = captionText.length > 50 ? captionText.slice(0, 50) + "..." : captionText;
     image.setAttribute("src", post["photo_url"]);
 
     //Append to container
@@ -56,17 +74,8 @@ const displayPosts = (json) => {
   });
 };
 
-// Fetches posts from the API. Pass a userId to get user-specific posts.
-export const fetchPosts = async (userId = null) => {
-  let url = API_URL;
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Network response was not ok");
-  return response.json();
-};
-
-fetchPosts()
-  .then(displayPosts)
-  .catch((error) => console.error("Error:", error));
+if (gridContainer) {
+  fetchPosts()
+    .then(displayPosts)
+    .catch((error) => console.error("Error:", error));
+}
