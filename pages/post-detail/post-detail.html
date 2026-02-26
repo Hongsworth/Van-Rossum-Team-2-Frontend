@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PuppyLand - Post</title>
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,7 +23,6 @@
     <link rel="stylesheet" href="../../styles/post-detail.css" />
   </head>
   <body class="body-with-image montserrat-regular">
-
     <!-- Header -->
     <header class="heading">
       <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
@@ -33,7 +33,6 @@
 
     <!-- Main Content -->
     <main class="post-detail">
-
       <!-- Navigation -->
       <div class="post-detail__nav">
         <a href="javascript:history.back()" class="post-detail__back">
@@ -42,28 +41,26 @@
         </a>
         <button class="post-detail__next" id="nextBtn" disabled>
           Next
-          <span class="material-icons post-detail__next-icon">arrow_forward</span>
+          <span class="material-icons post-detail__next-icon"
+            >arrow_forward</span
+          >
         </button>
       </div>
 
       <!-- Post image -->
-      <img
-        class="post-detail__image"
-        id="postImage"
-        src=""
-        alt="Dog photo"
-      />
+      <img class="post-detail__image" id="postImage" src="" alt="Dog photo" />
 
       <!-- Post metadata -->
       <section class="post-detail__info">
-
         <h2 class="post-detail__breed" id="postBreed"></h2>
 
         <p class="post-detail__caption" id="postCaption"></p>
 
         <div class="post-detail__meta">
           <span class="post-detail__meta-item">
-            <span class="material-icons post-detail__meta-icon">location_on</span>
+            <span class="material-icons post-detail__meta-icon"
+              >location_on</span
+            >
             <span id="postLocation">Unknown location</span>
           </span>
           <span class="post-detail__meta-item">
@@ -74,13 +71,13 @@
 
         <div class="post-detail__hearts">
           <button class="post-detail__heart-btn" id="heartBtn">
-            <span class="material-icons post-detail__heart-icon">favorite_border</span>
+            <span class="material-icons post-detail__heart-icon"
+              >favorite_border</span
+            >
             <span class="post-detail__heart-count" id="postHearts">0</span>
           </button>
         </div>
-
       </section>
-
     </main>
 
     <script type="module" src="../../scripts/index.js"></script>
