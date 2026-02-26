@@ -2,13 +2,32 @@ const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 
 const gridContainer = document.querySelector(".grid__container");
 
+// Fetches posts from the API. Pass a userId to get user-specific posts.
+const fetchPosts = async (userId = null) => {
+  let url = API_URL;
+  if (userId != null) {
+    url += "/userPosts?userId=" + userId;
+  }
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
+
 const displayPosts = (json) => {
   //Remove all current posts displayed
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.firstChild);
   }
+
+  // Sort by most recent first
+  const sorted = [...json].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+  // Store the ordered list of public post IDs so post-detail can use them for Next navigation
+  const publicIds = sorted.filter(p => p["is_public"]).map(p => p["id"]);
+  sessionStorage.setItem("gridPostIds", JSON.stringify(publicIds));
+
   //Generate HTML for all json objects that are returned
-  json.forEach((post) => {
+  sorted.forEach((post) => {
     // Skip posts that are not public
     if (!post["is_public"]) {
       return;
@@ -18,6 +37,7 @@ const displayPosts = (json) => {
     cardContainer.setAttribute("class", "grid__post");
     cardContainer.style.cursor = "pointer";
     cardContainer.addEventListener("click", () => {
+      sessionStorage.setItem("currentPost", JSON.stringify(post));
       window.location.href = `/pages/post-detail/post-detail.html?id=${post["id"]}`;
     });
     gridContainer.appendChild(cardContainer);
@@ -44,7 +64,8 @@ const displayPosts = (json) => {
     dogName.innerHTML = post["dog_name"];
     breedName.innerHTML = post["breed_name"];
     location.innerHTML = post["location"];
-    caption.innerHTML = post["caption"];
+    const captionText = post["caption"] || "";
+    caption.innerHTML = captionText.length > 50 ? captionText.slice(0, 50) + "..." : captionText;
     image.setAttribute("src", post["photo_url"]);
 
     //Append to container
@@ -54,17 +75,6 @@ const displayPosts = (json) => {
     cardContainer.appendChild(location);
     cardContainer.appendChild(caption);
   });
-};
-
-// Fetches posts from the API. Pass a userId to get user-specific posts.
-export const fetchPosts = async (userId = null) => {
-  let url = API_URL;
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Network response was not ok");
-  return response.json();
 };
 
 fetchPosts()

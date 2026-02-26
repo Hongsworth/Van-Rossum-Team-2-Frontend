@@ -1,7 +1,5 @@
 // Post Detail page — reads ?id= from URL, fetches post, renders it, wires Next.
-import { fakePosts } from "../data/fake-user.js";
-import { toggleHeart } from "./utils.js";
-import { fetchPosts } from "../pages/grid/scripts/grid.js";
+import { fetchPosts, toggleHeart } from "./utils.js";
 
 // -- DOM refs --
 const postImage = document.getElementById("postImage");
@@ -58,20 +56,18 @@ heartBtn.addEventListener("click", () => toggleHeart(heartBtn));
 
 // -- Load all posts, render current, wire Next button --
 const loadPost = async (id) => {
-  let allPosts;
+  // Try sessionStorage first — works for private/profile posts without a second fetch
+  const stored = sessionStorage.getItem("currentPost");
+  const storedPost = stored ? JSON.parse(stored) : null;
+  const fromStorage = storedPost && String(storedPost.id) === String(id) ? storedPost : null;
 
+  // Fetch all posts once — used for Next button and as fallback for rendering
+  let allPosts = [];
   try {
     allPosts = await fetchPosts();
-  } catch (err) {
-    console.warn(
-      "Could not load posts from API, using fake data:",
-      err.message,
-    );
-    allPosts = fakePosts;
-  }
+  } catch (_) { /* Next button stays disabled; may still render from storage */ }
 
-  const currentIndex = allPosts.findIndex((p) => String(p.id) === String(id));
-  const current = allPosts[currentIndex];
+  const current = fromStorage || allPosts.find((p) => String(p.id) === String(id));
 
   if (current) {
     renderPost(current);
@@ -80,11 +76,23 @@ const loadPost = async (id) => {
     return;
   }
 
-  const nextPost = allPosts[currentIndex + 1];
-  if (nextPost) {
+  // Use the grid's ordered post IDs for Next navigation.
+  // Fall back to API order if the user navigated directly (no sessionStorage).
+  const gridPostIds = JSON.parse(sessionStorage.getItem("gridPostIds") || "[]");
+  let nextId;
+
+  if (gridPostIds.length > 0) {
+    const idxInGrid = gridPostIds.findIndex((sid) => String(sid) === String(id));
+    nextId = gridPostIds[idxInGrid + 1];
+  } else {
+    const idx = allPosts.findIndex((p) => String(p.id) === String(id));
+    nextId = allPosts[idx + 1]?.id;
+  }
+
+  if (nextId != null) {
     nextBtn.removeAttribute("disabled");
     nextBtn.addEventListener("click", () => {
-      window.location.href = `/pages/post-detail/post-detail.html?id=${nextPost.id}`;
+      window.location.href = `/pages/post-detail/post-detail.html?id=${nextId}`;
     });
   }
 };
