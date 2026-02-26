@@ -147,14 +147,17 @@ const get = (url) => {
 if (gridContainer) {
   const searchBar = document.querySelector(".search");
   const searchQuery = document.querySelector(".search__input");
-  searchBar.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (searchQuery.value == "") {
-      getAllPosts();
-    } else {
-      searchPosts(searchQuery.value);
-    }
-  });
+  if (searchBar) {
+    searchBar.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (searchQuery.value == "") {
+        getAllPosts();
+      } else {
+        searchPosts(searchQuery.value);
+      }
+    });
+  }
+
   fetchPosts()
     .then(displayPosts)
     .catch((error) => console.error("Error:", error));
