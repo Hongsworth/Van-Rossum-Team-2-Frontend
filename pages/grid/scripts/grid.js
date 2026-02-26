@@ -1,164 +1,131 @@
 import { toggleHeart } from "../../../scripts/utils.js";
 
 const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
-
 const gridContainer = document.querySelector(".grid__container");
 
-// Fetches posts from the API. Pass a userId to get user-specific posts.
-export const fetchPosts = async (userId = null) => {
-  let url = API_URL;
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Network response was not ok");
-  return response.json();
-};
+const displayPosts = (posts) => {
+  if (!gridContainer) return;
+  gridContainer.innerHTML = "";
 
-const displayPosts = (json) => {
-  //Remove all current posts displayed
-  while (gridContainer.firstChild) {
-    gridContainer.removeChild(gridContainer.firstChild);
-  }
-
-  // Store the ordered list of public post IDs so post-detail can use them for Next navigation
-  const publicIds = json.filter((p) => p["is_public"]).map((p) => p["id"]);
+  const publicIds = posts.filter((p) => p.is_public).map((p) => p.id);
   sessionStorage.setItem("gridPostIds", JSON.stringify(publicIds));
 
-  //Generate HTML for all json objects that are returned
-  json.forEach((post) => {
-    // Skip posts that are not public
-    if (!post["is_public"]) {
-      return;
-    }
-    // Card Container
-    const cardContainer = document.createElement("div");
-    cardContainer.setAttribute("class", "grid__post");
-    cardContainer.style.cursor = "pointer";
-    cardContainer.addEventListener("click", () => {
+  posts.forEach((post) => {
+    if (!post.is_public) return;
+
+    const card = document.createElement("div");
+    card.classList.add("grid__post");
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => {
       sessionStorage.setItem("currentPost", JSON.stringify(post));
-      window.location.href = `/pages/post-detail/post-detail.html?id=${post["id"]}`;
+      window.location.href = `/pages/post-detail/post-detail.html?id=${post.id}`;
     });
-    gridContainer.appendChild(cardContainer);
 
-    //Card Body
-
-    //Element creation
-    const image = document.createElement("img");
-    image.setAttribute("class", "grid__post--image");
-    image.setAttribute("src", post["photo_url"]);
-    image.setAttribute(
-      "alt",
-      post["breed_name"] ? `${post["breed_name"]} dog` : "Dog photo",
-    );
+    const img = document.createElement("img");
+    img.classList.add("grid__post--image");
+    img.src = post.photo_url;
+    img.alt = post.breed_name ? `${post.breed_name} dog` : "Dog photo";
 
     const body = document.createElement("div");
-    body.setAttribute("class", "grid__post__body");
+    body.classList.add("grid__post__body");
 
     const dogName = document.createElement("p");
-    dogName.setAttribute("class", "grid__post--name");
-    dogName.innerHTML = post["dog_name"];
+    dogName.classList.add("grid__post--name");
+    dogName.textContent = post.dog_name;
 
     const breedName = document.createElement("p");
-    breedName.setAttribute("class", "grid__post--breed");
-    breedName.innerHTML = post["breed_name"];
+    breedName.classList.add("grid__post--breed");
+    breedName.textContent = post.breed_name;
 
     const caption = document.createElement("p");
-    caption.setAttribute("class", "grid__post--caption");
-    const captionText = post["caption"] || "";
-    caption.innerHTML =
-      captionText.length > 50 ? captionText.slice(0, 50) + "..." : captionText;
+    caption.classList.add("grid__post--caption");
+    const text = post.caption || "";
+    caption.textContent = text.length > 50 ? text.slice(0, 50) + "..." : text;
 
     const location = document.createElement("p");
-    location.setAttribute("class", "grid__post--location");
-    location.innerHTML = `<span class="grid__post--location-icon material-icons">location_on</span> ${post["location"] || "Unknown location"}`;
-
-    const dateTime = document.createElement("p");
-    dateTime.setAttribute("class", "grid__post__datetime");
-    const dateStr = post["created_at"];
-    if (dateStr) {
-      const date = new Date(dateStr);
-      dateTime.innerHTML = `
-        <span class="grid__post__datetime-icon material-icons">schedule</span>
-        ${date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-        &nbsp;·&nbsp;
-        ${date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}
-      `;
-    }
+    location.classList.add("grid__post--location");
+    location.innerHTML = `<span class="grid__post--location-icon material-icons">location_on</span> ${post.location || "Unknown location"}`;
 
     const hearts = document.createElement("div");
-    hearts.setAttribute("class", "grid__post__hearts");
+    hearts.classList.add("grid__post__hearts");
 
     const heartBtn = document.createElement("button");
-    heartBtn.setAttribute("class", "grid__post__heart-btn");
+    heartBtn.classList.add("grid__post__heart-btn");
     heartBtn.innerHTML = `
       <span class="material-icons grid__post__heart-icon">favorite_border</span>
-      <span class="grid__post__heart-count">${post["hearts"] ?? 0}</span>
+      <span class="grid__post__heart-count">${post.hearts ?? 0}</span>
     `;
     heartBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleHeart(heartBtn);
     });
+
     hearts.appendChild(heartBtn);
 
-    //Append to container
-    body.appendChild(dogName);
-    body.appendChild(breedName);
-    body.appendChild(caption);
-    body.appendChild(location);
-    if (dateStr) body.appendChild(dateTime);
-    body.appendChild(hearts);
-
-    cardContainer.appendChild(image);
-    cardContainer.appendChild(body);
+    body.append(dogName, breedName, caption, location, hearts);
+    card.append(img, body);
+    gridContainer.appendChild(card);
   });
 };
 
-const getAllPosts = (userId) => {
-  let url = API_URL;
-  if (userId != null) {
-    url += "/userPosts?userId=" + userId;
-  }
-  get(url);
-};
+export const fetchAndDisplayPosts = async (
+  userId = null,
+  searchQuery = "",
+  render = true,
+) => {
+  try {
+    let url = API_URL;
 
-const searchPosts = (search) => {
-  let url = API_URL + "/search?search=" + search;
-  get(url);
-};
+    if (searchQuery) {
+      url += `/search?search=${encodeURIComponent(searchQuery)}`;
+      if (userId) url += `&userId=${userId}`;
+    } else if (userId) {
+      url += `/userPosts?userId=${userId}`;
+    } else {
+    }
 
-const get = (url) => {
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      // Display data in an HTML element
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (render) {
       displayPosts(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+    }
+
+    return data; // always return data
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
+
+export const fetchPosts = async (userId = null) => {
+  try {
+    let url = API_URL;
+    if (userId != null) {
+      url += `/userPosts?userId=${userId}`;
+    }
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Network response was not ok");
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("fetchPosts error:", err);
+    return [];
+  }
 };
 
 if (gridContainer) {
   const searchBar = document.querySelector(".search");
-  const searchQuery = document.querySelector(".search__input");
+  const searchInput = document.querySelector(".search__input");
+
   if (searchBar) {
+    fetchAndDisplayPosts();
     searchBar.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (searchQuery.value == "") {
-        getAllPosts();
-      } else {
-        searchPosts(searchQuery.value);
-      }
+      const query = searchInput.value.trim();
+      fetchAndDisplayPosts(null, query);
     });
   }
-
-  fetchPosts()
-    .then(displayPosts)
-    .catch((error) => console.error("Error:", error));
 }

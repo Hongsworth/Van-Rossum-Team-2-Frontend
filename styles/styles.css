@@ -90,7 +90,7 @@ body {
 .menu {
   background-color: rgba(255, 255, 255, 0.5);
   position: fixed;
-  transform: translateX(110%);
+  transform: translateX(120%);
   transition: transform 0.2s;
   top: 0;
   left: 40%;
@@ -100,11 +100,11 @@ body {
   color: white;
   list-style: none;
   padding-top: 4rem;
-  width: 50%;
+  width: 60%;
 }
 @media only screen and (min-width: 576px) and (max-width: 768px) {
   .menu {
-    left: 50%;
+    left: 60%;
     width: 40%;
   }
 }
@@ -120,6 +120,7 @@ body {
     padding: 10px 0;
     left: 50%;
     bottom: auto;
+    position: absolute;
   }
 }
 @media only screen and (min-width: 1201px) {
@@ -134,6 +135,7 @@ body {
     transform: translateX(-20%);
     padding: 10px 0;
     bottom: auto;
+    position: absolute;
   }
 }
 .menu--show {

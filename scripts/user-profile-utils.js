@@ -3,7 +3,7 @@ export const loadUserProfile = () => {
     // If it does not exist, we will create one
     let userProfileStr = sessionStorage.getItem("userProfile");
     if (userProfileStr === null) {
-        userProfileStr = `{"name": "", "isLoggedIn": false}`;
+        userProfileStr = `{"name": "", "loggedin": false}`;
         sessionStorage.setItem("userProfile", userProfileStr);
     }
     return JSON.parse(userProfileStr);
