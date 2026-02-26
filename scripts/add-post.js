@@ -72,4 +72,5 @@ document.querySelector("#add-post").addEventListener("submit", (event) => {
             }),
         });
     });
+    location.href = "/pages/user-profile/user-profile.html";
 });
