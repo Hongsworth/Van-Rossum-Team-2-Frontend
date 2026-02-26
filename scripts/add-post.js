@@ -47,27 +47,9 @@ document
 
         console.log("breed:", breed, "dogName:", dogName, "location:", location, "caption:", caption, "photo:", (photo !== null ? "True" : "False"));
 
-        uploadToS3Async(photo)
-            .then(response => {
-                console.log("response:", response);
-            })
-            .catch(reject => {
-                console.err(reject)
-            });
-        // console.log(uploadToS3Async(photo));
-
-        // Call the S3 bucket first to get the url, once that is done
-        // fetch("https://api/S3/upload", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": ""
-        //     },
-        //     body: {
-
-        //     }
-        // }).then(response => {
+        // uploadToS3Async(photo)
+        // .then(response => {
         //     // Call our own API to store the actual post
-        //     const data = response.json();
 
         //     fetch("https://van-rossum-team-2-production.up.railway.app/api/posts", {
         //         method: "POST",
@@ -78,7 +60,7 @@ document
         //             breed_name: breed,
         //             dog_name: dogName,
         //             location,
-        //             photo_url: ""
+        //             photo_url: response.photo_url
         //         })
         //     });
         // });
