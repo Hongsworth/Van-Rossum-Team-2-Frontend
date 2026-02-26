@@ -7,6 +7,7 @@
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   background-color: #f5e6ed;
   min-height: 100vh;
 }
@@ -104,6 +105,44 @@ grid__divider {
   display: flex;
   flex-direction: column;
   width: 100%;
+  cursor: pointer;
+  animation: card-pop 0.4s ease-out both;
+}
+.grid__post:nth-child(1) {
+  animation-delay: 0s;
+}
+.grid__post:nth-child(2) {
+  animation-delay: 0.07s;
+}
+.grid__post:nth-child(3) {
+  animation-delay: 0.14s;
+}
+.grid__post:nth-child(4) {
+  animation-delay: 0.21s;
+}
+.grid__post:nth-child(5) {
+  animation-delay: 0.28s;
+}
+.grid__post:nth-child(6) {
+  animation-delay: 0.35s;
+}
+.grid__post:nth-child(7) {
+  animation-delay: 0.42s;
+}
+.grid__post:nth-child(8) {
+  animation-delay: 0.49s;
+}
+.grid__post:nth-child(9) {
+  animation-delay: 0.56s;
+}
+.grid__post:nth-child(10) {
+  animation-delay: 0.63s;
+}
+.grid__post:nth-child(11) {
+  animation-delay: 0.7s;
+}
+.grid__post:nth-child(12) {
+  animation-delay: 0.77s;
 }
 .grid__post--image {
   width: calc(100% - 1.5rem);
@@ -125,12 +164,6 @@ grid__divider {
     height: 300px;
   }
 }
-.grid__post__body {
-  padding: 0.85rem 1rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 .grid__post--name {
   font-size: 1rem;
   font-weight: 600;
@@ -139,6 +172,12 @@ grid__divider {
 .grid__post--breed {
   font-size: 0.85rem;
   color: #888;
+}
+.grid__post__body {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .grid__post--caption {
   font-style: italic;
@@ -206,3 +245,16 @@ grid__divider {
   padding: 3rem 0;
   width: 100%;
 }
+
+@keyframes card-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/*# sourceMappingURL=user-profile.css.map */

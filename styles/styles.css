@@ -1,5 +1,15 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
+  background-color: #f5e6ed;
+  min-height: 100vh;
 }
 
 .body-with-image {
@@ -10,8 +20,36 @@ body {
 
 .heading {
   text-align: center;
+  padding: 1rem 0 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.45);
+}
+.heading__title {
+  font-size: 3rem;
+  line-height: 1.2;
 }
 
+.grid__post {
+  cursor: pointer;
+}
+
+.paw-trail {
+  position: fixed;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.5rem;
+  z-index: 9999;
+  animation: paw-fade 0.8s ease-out forwards;
+}
+
+@keyframes paw-fade {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .imperial-script-regular {
   font-family: "Imperial Script", cursive;
   font-weight: 400;

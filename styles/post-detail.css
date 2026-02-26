@@ -7,6 +7,7 @@
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   background-color: #f5e6ed;
   min-height: 100vh;
 }
@@ -157,3 +158,5 @@ body {
   font-size: 0.95rem;
   color: #555;
 }
+
+/*# sourceMappingURL=post-detail.css.map */
