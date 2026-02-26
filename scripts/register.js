@@ -32,8 +32,6 @@ document
             }),
         })
             .then((response) => response.json())
-            .then((response) => {
-            })
             .then(() =>
                 fetch(
                     "https://van-rossum-team-2-production.up.railway.app/api/users/login",
