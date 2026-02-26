@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../../../styles/add-post.css">
 </head>
 
-<body class="body body-with-image montserrat-regular">
+<body class="body-with-image montserrat-regular">
     <header class="heading">
         <h1 class="heading__title imperial-script-regular">PuppyLand</h1>
     </header>
@@ -46,9 +46,25 @@
             <textarea class="add-post__field montserrat-regular" name="caption"
                 id="caption" cols="20" rows="10"></textarea><br>
 
-            <label class="add-post__label" for="photo">Photo:</label>
-            <input class="add-post__btn" type="file" name="photo" id="photo"
-                accept="image/*" required><br>
+            <div class="add-post__section">
+                <label class="add-post__label add-post__label--file-select"
+                    for="photo">
+                    Select Photo
+                </label>
+                <p class="file-name"></p>
+
+                <input class="add-post__btn" type="file" name="photo" id="photo"
+                    accept="image/*" required><br>
+            </div>
+
+            <label class="add-post__label" for="is-public">Show this be
+                public?
+                <input type="radio" name="is-public" id="is-public"
+                    value="true">Yes
+                <input type="radio" name="is-public" id="is-public"
+                    value="false" checked>No
+            </label>
+            <br>
 
             <input class="add-post__submit btn" type="submit" value="Submit">
         </form>
