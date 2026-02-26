@@ -22,7 +22,7 @@ const displayPosts = (json) => {
   }
 
   // Store the ordered list of public post IDs so post-detail can use them for Next navigation
-  const publicIds = json.filter(p => p["is_public"]).map(p => p["id"]);
+  const publicIds = json.filter((p) => p["is_public"]).map((p) => p["id"]);
   sessionStorage.setItem("gridPostIds", JSON.stringify(publicIds));
 
   //Generate HTML for all json objects that are returned
@@ -47,7 +47,10 @@ const displayPosts = (json) => {
     const image = document.createElement("img");
     image.setAttribute("class", "grid__post--image");
     image.setAttribute("src", post["photo_url"]);
-    image.setAttribute("alt", post["breed_name"] ? `${post["breed_name"]} dog` : "Dog photo");
+    image.setAttribute(
+      "alt",
+      post["breed_name"] ? `${post["breed_name"]} dog` : "Dog photo",
+    );
 
     const body = document.createElement("div");
     body.setAttribute("class", "grid__post__body");
@@ -63,7 +66,8 @@ const displayPosts = (json) => {
     const caption = document.createElement("p");
     caption.setAttribute("class", "grid__post--caption");
     const captionText = post["caption"] || "";
-    caption.innerHTML = captionText.length > 50 ? captionText.slice(0, 50) + "..." : captionText;
+    caption.innerHTML =
+      captionText.length > 50 ? captionText.slice(0, 50) + "..." : captionText;
 
     const location = document.createElement("p");
     location.setAttribute("class", "grid__post--location");
@@ -110,7 +114,50 @@ const displayPosts = (json) => {
   });
 };
 
+const getAllPosts = (userId) => {
+  let url = API_URL;
+  if (userId != null) {
+    url += "/userPosts?userId=" + userId;
+  }
+  get(url);
+};
+
+const searchPosts = (search) => {
+  let url = API_URL + "/search?search=" + search;
+  get(url);
+};
+
+const get = (url) => {
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Display data in an HTML element
+      displayPosts(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
 if (gridContainer) {
+  const searchBar = document.querySelector(".search");
+  const searchQuery = document.querySelector(".search__input");
+  if (searchBar) {
+    searchBar.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (searchQuery.value == "") {
+        getAllPosts();
+      } else {
+        searchPosts(searchQuery.value);
+      }
+    });
+  }
+
   fetchPosts()
     .then(displayPosts)
     .catch((error) => console.error("Error:", error));
