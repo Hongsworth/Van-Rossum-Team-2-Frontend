@@ -1,4 +1,5 @@
 // Shared utility functions
+
 // Toggles the heart icon inside a given button between filled and outlined
 export const toggleHeart = (btn) => {
   const icon = btn.querySelector(".material-icons");

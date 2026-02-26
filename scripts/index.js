@@ -1,5 +1,6 @@
 import { getMenu } from "./menu.js";
 import { loadUserProfile } from "./user-profile-utils.js";
+import "./paw-trail.js";
 
 const userProfile = loadUserProfile();
 const navBar = document.querySelector("#navbar");

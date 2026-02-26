@@ -45,6 +45,7 @@ $detail-max-width: 720px;
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   background-color: $color-bg;
   min-height: 100vh;
 }
@@ -134,6 +135,13 @@ body {
     display: block;
     background-color: #e0e0e0;
     margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
 
     @include mobile {
       height: 260px;
