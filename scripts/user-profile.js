@@ -1,15 +1,7 @@
 // Profile page — loads user data and their posts, renders stats and cards.
 import fakeUserSessionData, { fakePosts } from "../data/fake-user.js"; // TODO: remove when login saves session
 import { toggleHeart } from "./utils.js";
-
-const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
-const fetchPosts = async (userId = null) => {
-  let url = API_URL;
-  if (userId != null) url += "/userPosts?userId=" + userId;
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Network response was not ok");
-  return response.json();
-};
+import { fetchPosts } from "../pages/grid/scripts/grid.js";
 
 const sessionStr = sessionStorage.getItem("userProfile");
 const sessionUser = sessionStr ? JSON.parse(sessionStr) : null;

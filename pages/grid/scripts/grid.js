@@ -3,7 +3,7 @@ const API_URL = "https://van-rossum-team-2-production.up.railway.app/api/posts";
 const gridContainer = document.querySelector(".grid__container");
 
 // Fetches posts from the API. Pass a userId to get user-specific posts.
-const fetchPosts = async (userId = null) => {
+export const fetchPosts = async (userId = null) => {
   let url = API_URL;
   if (userId != null) {
     url += "/userPosts?userId=" + userId;
